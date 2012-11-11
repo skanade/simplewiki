@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title>Simple Wiki</title>
+    <link rel="stylesheet" type="text/css" href="main.css"/>
+  </head>
+  <body>
+    <div id='top-header'>
+      <h1>Simple Wiki</h1>
+      <nav>
+        <ul>
+          <li>
+            <div class='create-new'>
+              <form action='/new' method='post'>
+                <input name='new_page_name' value=''/>
+                <input class='main-button' type='submit' value='Create New Page'/>
+              </form>
+            </div>
+          </li>
+          <li>
+            <div class='search'>
+              <form action='/search' method='post'>
+                <input name='search_value' value='<%=@search_value%>' size="60"/>
+                <input class='main-button' type='submit' value='Search'/>
+              </form>
+            </div>
+          </li>
+          <li>
+            <div class='upload-image'>
+              <form action='/upload' method='get'>
+                <input class='utility-button' type='submit' value='Upload Image'/>
+              </form>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div id='main'>
+      <header>
+        <p class='page-list'>Latest Pages</p>
+        <nav>
+          <ul>
+            <% @wiki.last_few_pages.each do |page_name| %>
+              <li><a href='/view?page_name=<%=page_name%>'><%=page_name%></a></li>
+            <% end %>
+          </ul>
+        </nav>
+        <br/>
+        <p class='page-list'>All Pages</p>
+        <nav>
+          <ul>
+            <% @wiki.saved_page_names.each do |saved_page_name| %>
+              <li><a href='/view?page_name=<%=saved_page_name%>'><%= saved_page_name %></a></li>
+            <% end %>
+          </ul>
+        </nav>
+      </header>
+      <div id='page-main'>
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

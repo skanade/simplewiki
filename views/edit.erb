@@ -1,0 +1,6 @@
+  <h1><%=@page.page_name%></h1>
+  <form action='/save?page_name=<%=@page.page_name%>' method='post'>
+    <div><input type='hidden' name='page_name' value='<%=@page.page_name%>'/></div>
+    <div><input class='page-button' type='submit' value='Save'/></div>
+    <div><textarea name='content' cols='109' rows='34'><%=@page.as_string%></textarea></div>
+  </form>

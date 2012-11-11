@@ -1,0 +1,11 @@
+  <h1>Upload Image</h1>
+  <% if @notice %>
+    <p>&nbsp;<%=@notice%></p>
+  <% end %>
+  <form action='/upload' method='post' enctype='multipart/form-data'>
+    <br/>
+    &nbsp;<input class='file' type='file' name='afile' size='100'/>
+    <br/>
+    <br/>
+    &nbsp;&nbsp;<input class='page-button' type='submit' value='Upload'/>
+  </form>

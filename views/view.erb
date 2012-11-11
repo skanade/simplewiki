@@ -1,0 +1,11 @@
+  <h1><%=@page_name%></h1>
+  <form action='/edit' method='get'>
+    <div><input type='hidden' name='page_name' value='<%=@page_name%>'/></div>
+    <div><input class='page-button' type='submit' value='Edit'/></div>
+  </form>
+  <article>
+    <% @page.to_html_array.each do |line| %>
+<%=line%>
+    <% end %>
+    <br/>
+  </article>

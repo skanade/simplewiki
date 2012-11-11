@@ -1,0 +1,6 @@
+<img src="images/Ruby Round.gif">
+h2. Ruby Links
+
+* "Ruby":http://www.ruby-lang.org
+* "Example Rakefile":rakefile_example
+* "Red Cloth Examples":red_cloth_examples

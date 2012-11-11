@@ -1,0 +1,12 @@
+  <h1>Search Results</h1>
+  <article>
+  <% @search_result.keys.each do |page_name| %>
+    <div class='search-result'>
+      <p class='search-result-pagename'><a href='/view?page_name=<%=page_name%>'><%= page_name %></a></p>
+      <% page_result = @search_result[page_name] %>
+      <% page_result.each do |matching_line| %>
+        <p class='search-result-line'><%= matching_line %></p>
+      <% end %>  
+      </div>
+  <% end %>
+  </article>
