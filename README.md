@@ -8,8 +8,9 @@ Here are steps to get this running on your machine:
 1. First, download & install Ruby
 
 2. Then install the 2 gems below:
-  * sinatra
-  * redcloth
+  * gem install sinatra
+  * gem install redcloth
+
 
 3. Startup the sinatra instance with:
 
