@@ -61,7 +61,7 @@ class SimpleWiki
 
     now = Time.now
     sorted_by_mtime = pages.sort_by do |page|
-      [now-page.mtime, page]
+      now-page.mtime
     end
     
     page_names = []

@@ -52,17 +52,17 @@ body {
   }
 
   #top-header .search {
-    margin-left: 60px;
+    margin-left: 50px;
     padding: 2px 2px 2px 2px;
     #border: 1px solid #DDDDDD;
     float: left;
   }
 
   #top-header .upload-image {
-    margin-left: 110px;
+    margin-right: 10px;
     padding: 2px 2px 2px 2px;
     #border: 1px solid #DDDDDD;
-    float: left;
+    float: right;
   }
   
   #top-header .main-button {
