@@ -5,12 +5,22 @@ A simple wiki - use it as a personal wiki notebook
 
 Here are steps to get this running on your machine:
 
-1. First, download & install Ruby
+1. First, download & install Ruby 1.9.3
 
-2. Then install the 2 gems below:
-  * gem install sinatra
-  * gem install redcloth
+2. Then install the 2 gems: sinatra & redcloth
+  * gem install sinatra 
+  * gem install RedCloth
 
+#### RedCloth
+To install the RedCloth gem on Windows, you'll need to:
+  * install DevKit from: http://rubyinstaller.org/downloads/.  
+  * Follow the instructions here first: http://stackoverflow.com/questions/7290868/how-to-install-redcloth-on-windows/7309894#7309894
+  * gem install RedCloth
+
+#### Behind a Firewall
+If you're behind a firewall and you can't install remote gems, you'll have to download sinatra and its dependencies such as: rack, rack-protection, tilt, and RedCloth as .gem files to your PC.
+Then make sure you have LOAD_PATH=. and install each gem:
+  * gem install <Gemname> (ex: gem install tilt)
 
 3. Startup the sinatra instance with:
 
@@ -20,7 +30,8 @@ Here are steps to get this running on your machine:
 
   http://localhost:4567
 
-
 You should see the last page that was modified, which probably is the 'ruby_index' page.
+
+*Note:* this currently only works on firefox and chrome. It doesn't look quite right on internet explorer.
 
 Enjoy!
