@@ -34,6 +34,6 @@ To install the RedCloth gem on Windows, you'll need to:
 #### Behind a Firewall
 If you're behind a firewall and you can't install remote gems, you'll have to download sinatra and its dependencies such as: rack, rack-protection, tilt, and RedCloth as .gem files to your PC.
 Then make sure you have LOAD_PATH=. and install each gem:
-  * gem install <Gemname> (ex: gem install tilt)
+  * gem install *Gemname* (ex: gem install tilt)
 
 
