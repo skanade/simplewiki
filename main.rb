@@ -51,14 +51,17 @@ end
 post '/upload' do
   #puts params
   afile = params[:afile]
-  puts "afile: #{afile}"
+  #puts "afile: #{afile}"
   filename = afile[:filename]
+  #puts "filename: #{filename}"
   tempfile = afile[:tempfile]
+  #puts "tempfile: #{tempfile}"
+  #puts "tempfile.path: #{tempfile.path}"
 
   images_path = "public/images/"
 
   File.open("#{images_path}/#{filename}", "w") do |file|
-    file.write(tempfile.read)
+    file.write(File.open(tempfile,'rb').read)
   end
   @notice = "#{filename} was successfully uploaded to: '#{images_path}'"
   erb :upload
@@ -81,6 +84,7 @@ end
 
 get '/*' do
   page_name = params[:splat][0]
+  #puts "params splat page_name: #{page_name}"
   if page_name =~ /favicon.ico/
     return
   end
