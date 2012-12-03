@@ -60,7 +60,7 @@ post '/upload' do
 
   images_path = "public/images/"
 
-  File.open("#{images_path}/#{filename}", "w") do |file|
+  File.open("#{images_path}/#{filename}", 'wb') do |file|
     file.write(File.open(tempfile,'rb').read)
   end
   @notice = "#{filename} was successfully uploaded to: '#{images_path}'"
