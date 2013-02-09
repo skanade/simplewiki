@@ -1,6 +1,10 @@
 require 'wikipage'
+require 'wikiconfig'
 
 class SimpleWiki
+  def initialize
+    @config = WikiConfig.new
+  end
   def get_text_file_paths
     text_file_paths = Dir.glob('text/*.txt')
   end
@@ -47,7 +51,7 @@ class SimpleWiki
     last_page
   end
   def last_few_pages
-    last_n_pages(3)
+    last_n_pages(@config.last_num_pages)
   end
   def last_n_pages(n)
     text_file_paths = get_text_file_paths

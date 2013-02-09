@@ -44,6 +44,15 @@ get '/view' do
   erb :view
 end
 
+get '/printview' do
+  @page_name = params[:page_name]
+  #puts "@page_name #{@page_name}"
+  page = WikiPage.new(@page_name)
+  @page = page
+  @print_view = true
+  erb :view, :layout => :layout_print
+end
+
 get '/upload' do
   erb :upload
 end

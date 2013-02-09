@@ -36,6 +36,7 @@ body {
 }
 
   #top-header h1 {
+    padding-right: 80px;
     margin-left: -40px;
     width: 1000px;
     font-size: 1.3em;
@@ -295,3 +296,17 @@ header {
     background: -moz-linear-gradient(top,  #FFF700,  #FCDC00);
   filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF700', endColorstr='#FCDC00fff');
   }
+
+
+  #page-main .form-buttons-inline {
+    width: 150px;
+  }
+  #page-main .form-buttons-inline .form-buttons-left {
+    float: left;
+    width: 50px;
+  }
+  #page-main .form-buttons-inline .form-buttons-right {
+    float: right;
+    width: 100px;
+  }
+

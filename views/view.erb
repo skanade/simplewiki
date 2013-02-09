@@ -1,8 +1,20 @@
   <h1><%=@page_name%></h1>
-  <form action='/edit' method='get'>
-    <div><input type='hidden' name='page_name' value='<%=@page_name%>'/></div>
-    <div><input class='page-button' type='submit' value='Edit'/></div>
-  </form>
+  <% if not defined? @print_view %>
+    <div class='form-buttons-inline'>
+      <div class='form-buttons-left'>
+        <form action='/edit' method='get'>
+          <div><input type='hidden' name='page_name' value='<%=@page_name%>'/></div>
+          <div><input class='page-button' type='submit' value='Edit'/></div>
+        </form>
+      </div>
+      <div class='form-buttons-right'>
+        <form action='/printview' method='get'>
+          <div><input type='hidden' name='page_name' value='<%=@page_name%>'/></div>
+          <div><input class='page-button' type='submit' value='Print View'/></div>
+        </form>
+      </div>
+    </div>
+  <% end %>
   <article>
     <% @page.to_html_array.each do |line| %>
 <%=line%>
