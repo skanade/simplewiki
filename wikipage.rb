@@ -1,4 +1,5 @@
-require 'redcloth'
+require 'redcloth' if ENV['REDCLOTH']
+require 'mymarkdownsubset'
 
 class WikiPage
   attr_accessor :content
@@ -18,7 +19,11 @@ class WikiPage
     File.readlines(text_file_path)
   end
   def to_html_line(line)
-    RedCloth.new(line).to_html
+    if ENV['REDCLOTH']
+      return RedCloth.new(line).to_html
+    else
+      return MyMarkdownSubset.new(line).to_html
+    end
   end
   def to_html_array
     text_file_path = get_text_file_path

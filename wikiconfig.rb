@@ -1,3 +1,5 @@
+require 'yaml'
+
 class WikiConfig
   def initialize
     @config = YAML::load(File.open('simplewiki.yaml'))
