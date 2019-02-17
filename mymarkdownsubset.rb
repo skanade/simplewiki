@@ -1,8 +1,10 @@
 class MyMarkdownSubset
-  PATTERN_BULLET = '\*'
-  NESTED_PATTERN_BULLET = '\*\*'
-  PATTERN_NUMBERSIGN = '#'
-  NESTED_PATTERN_NUMBERSIGN = '##'
+  # adding extra space afterwards so that format is different from *text* for <strong> tag
+  # added extra space after # also, just for consistency
+  PATTERN_BULLET = '\* '
+  NESTED_PATTERN_BULLET = '\*\* '
+  PATTERN_NUMBERSIGN = '# '
+  NESTED_PATTERN_NUMBERSIGN = '## '
 
   def initialize(line)
     @line = line 
@@ -11,6 +13,7 @@ class MyMarkdownSubset
     result = to_href(@line)
     result = to_bold_or_italics(result)
     result = to_heading(result)
+    result = to_strong(result)
     if bullet_or_numbersign?(result)
       return to_listitem(result)
     end
@@ -18,13 +21,12 @@ class MyMarkdownSubset
   end
   def to_href(text)
     result = text
-    # note: below only works if space before and after "link":linkurl
     if text =~ /(?<before>.*)"(?<linkname>.*)":(?<linkurl>\S+)(?<after>.*)/
       before = $~[:before]
       linkname = $~[:linkname]
       linkurl = $~[:linkurl]
       after = $~[:after]
-      result = "#{before}\s<a href=\"#{linkurl}\">#{linkname}</a>#{after}"
+      result = "#{before}<a href=\"#{linkurl}\">#{linkname}</a>#{after}"
     end
     result
   end
@@ -52,6 +54,16 @@ class MyMarkdownSubset
       result = "<h3>#{$~.post_match}</h3>"
     elsif text =~ /h4\./
       result = "<h4>#{$~.post_match}</h4>"
+    end
+    result
+  end
+  def to_strong(text)
+    result = text
+    if text =~ /(?<before>.*)\*(?<strong_text>.*)\*(?<after>.*)/
+      before = $~[:before]
+      strong_text = $~[:strong_text]
+      after = $~[:after]
+      result = "#{before}<strong>#{strong_text}</strong>#{after}"
     end
     result
   end
