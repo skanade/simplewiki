@@ -13,12 +13,13 @@ Here are steps to get this running on your machine:
 
 3. Startup the sinatra instance with:
 
+<pre>
   ruby main.rb
-  
+</pre>
    OR if you want to run with RedCloth:
-  
+<pre>
   REDCLOTH=true ruby main.rb
-
+</pre>
 4. Open a browser to: 
 
   http://localhost:4567
