@@ -9,11 +9,15 @@ Here are steps to get this running on your machine:
 
 2. Then install the 2 gems: sinatra & redcloth
   * gem install sinatra 
-  * gem install RedCloth
+  * gem install RedCloth (optional - you can also run without RedCloth, with a limited subset of markdown)
 
 3. Startup the sinatra instance with:
 
   ruby main.rb
+  
+   OR if you want to run with RedCloth:
+  
+  REDCLOTH=true ruby main.rb
 
 4. Open a browser to: 
 
@@ -26,7 +30,11 @@ You should see the last page that was modified, which probably is the 'ruby_inde
 Enjoy!
 
 #### RedCloth
-To install the RedCloth gem on Windows, you'll need to:
+By default, this simplewiki will run without using RedCloth and use instead a limited subset of Markdown which is implemented internally.
+
+If you want to use RedCloth though, you still can by running  or if you're on Windows and don't want to install DevKit which is a prerequisite, you can 
+
+If you want to use RedCloth though, on Windows, you will have to first do the following:
   * install DevKit from: http://rubyinstaller.org/downloads/.  
   * Follow the instructions here first: http://stackoverflow.com/questions/7290868/how-to-install-redcloth-on-windows/7309894#7309894
   * gem install RedCloth
