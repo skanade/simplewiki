@@ -10,6 +10,18 @@
     </script>
     <![endif]-->
     <link rel="stylesheet" type="text/css" href="main.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#search_input").on("keyup", function(){
+    var value = $(this).val().toLowerCase();
+    $("#page-main *").filter(function(){
+      $(this).toggle( $(this).text().toLowerCase().indexOf(value) > -1 );
+    });
+  });
+});
+</script>
+
   </head>
   <body>
     <div id='top-header'>
@@ -27,7 +39,7 @@
           <li>
             <div class='search'>
               <form action='/search' method='post'>
-                <input name='search_value' value='<%=@search_value%>' size="45"/>
+                <input id="search_input" name='search_value' value='<%=@search_value%>' size="45"/>
                 <input class='main-button' type='submit' value='Search'/>
               </form>
             </div>
