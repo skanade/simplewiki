@@ -31,11 +31,11 @@ You should see the last page that was modified, which probably is the 'ruby_inde
 Enjoy!
 
 #### RedCloth
-By default, this simplewiki will run without using RedCloth and use instead a limited subset of Markdown which is implemented internally.
+By default, this simplewiki will run without RedCloth and instead use a (very) limited subset of Markdown which is implemented (only partially) internally.
 
-If you want to use RedCloth though, you still can by running  or if you're on Windows and don't want to install DevKit which is a prerequisite, you can 
+If you want to use RedCloth instead, you still can by running with the `REDCLOTH=true` environment variable.  
 
-If you want to use RedCloth though, on Windows, you will have to first do the following:
+If you want to use RedCloth on Windows though, you will have to first do the following:
   * install DevKit from: http://rubyinstaller.org/downloads/.  
   * Follow the instructions here first: http://stackoverflow.com/questions/7290868/how-to-install-redcloth-on-windows/7309894#7309894
   * gem install RedCloth
