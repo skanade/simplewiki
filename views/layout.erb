@@ -19,6 +19,13 @@ $(document).ready(function(){
       $(this).toggle( $(this).text().toLowerCase().indexOf(value) > -1 );
     });
   });
+
+  $("#search_page_name_input").on("keyup", function(){
+    var value = $(this).val().toLowerCase();
+    $("header nav *").filter(function(){
+      $(this).toggle( $(this).text().toLowerCase().indexOf(value) > -1 );
+    });
+  });
 });
 </script>
 
@@ -56,6 +63,7 @@ $(document).ready(function(){
     </div>
     <div id='main'>
       <header>
+        <input id="search_page_name_input" placeholder='search page names..' size="20"/>
         <p class='page-list'>Latest Pages</p>
         <nav>
           <ul>
