@@ -3,7 +3,7 @@ simplewiki
 
 A simple wiki - use it as a personal wiki notebook
 
-[[https://github.com/skanade/simplewiki/blob/master/simplewiki.png|screenshot]]
+[[https://github.com/skanade/simplewiki/blob/master/simplewiki.png|alt=screenshot]]
 
 Here are steps to get this running on your machine:
 
