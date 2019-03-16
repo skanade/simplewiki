@@ -3,6 +3,8 @@ simplewiki
 
 A simple wiki - use it as a personal wiki notebook
 
+https://github.com/skanade/simplewiki/wiki (see screenshot)
+
 Here are steps to get this running on your machine:
 
 1. First, download & install Ruby 2.x (developed with Ruby 1.9.3 originally and runs successfully with Ruby 2.3.3)
