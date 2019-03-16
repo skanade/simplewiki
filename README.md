@@ -28,12 +28,12 @@ Here are steps to get this running on your machine:
 
 You should see the last page that was modified, which probably is the 'ruby_index' page.
 
-*Note:* this currently only works on firefox and chrome. It doesn't look quite right on internet explorer.
+*Note:* this currently only works on firefox and chrome and safari. It doesn't look quite right on internet explorer.
 
 Enjoy!
 
 #### RedCloth
-By default, this simplewiki will run without RedCloth and instead use a (very) limited subset of Markdown which is implemented (only partially) internally.
+By default, this simplewiki will run without RedCloth and instead use a limited subset of Markdown which is implemented internally.
 
 If you want to use RedCloth instead, you still can by running with the `REDCLOTH=true` environment variable.  
 
