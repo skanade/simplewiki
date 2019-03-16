@@ -1,117 +1,135 @@
-class MyMarkdownSubset
-  # adding extra space afterwards so that format is different from *text* for <strong> tag
-  # added extra space after # also, just for consistency
-  PATTERN_BULLET = '\* '
-  NESTED_PATTERN_BULLET = '\*\* '
-  PATTERN_NUMBERSIGN = '# '
-  NESTED_PATTERN_NUMBERSIGN = '## '
+module MyMarkdownSubset
 
-  def initialize(line)
-    @line = line 
-  end
-  def to_html
-    result = to_href(@line)
-    result = to_bold_or_italics(result)
-    result = to_heading(result)
-    result = to_strong(result)
-    if bullet_or_numbersign?(result)
-      return to_listitem(result)
-    end
-    return "<p>#{result}</p>"
-  end
-  def to_href(text)
-    result = text
-    if text =~ /(?<before>.*)"(?<linkname>.*)":(?<linkurl>\S+)(?<after>.*)/
-      before = $~[:before]
-      linkname = $~[:linkname]
-      linkurl = $~[:linkurl]
-      after = $~[:after]
-      result = "#{before}<a href=\"#{linkurl}\">#{linkname}</a>#{after}"
-    end
-    result
-  end
-  def bullet_or_numbersign?(text)
-    return true if text =~ /#{PATTERN_BULLET}/
-    return true if text =~ /#{PATTERN_NUMBERSIGN}/
-    return false
-  end
-  def to_bold_or_italics(text)
-    result = text
-    if text =~ /b\./
-      result = "<b>#{$~.post_match}</b>"
-    elsif text =~ /i\./
-      result = "<i>#{$~.post_match}</i>"
-    end
-    result
-  end
-  def to_heading(text)
-    result = text
-    if text =~ /h1\./
-      result = "<h1>#{$~.post_match}</h1>"
-    elsif text =~ /h2\./
-      result = "<h2>#{$~.post_match}</h2>"
-    elsif text =~ /h3\./
-      result = "<h3>#{$~.post_match}</h3>"
-    elsif text =~ /h4\./
-      result = "<h4>#{$~.post_match}</h4>"
-    end
-    result
-  end
-  def to_strong(text)
-    result = text
-    if text =~ /(?<before>.*)\*(?<strong_text>.*)\*(?<after>.*)/
-      before = $~[:before]
-      strong_text = $~[:strong_text]
-      after = $~[:after]
-      result = "#{before}<strong>#{strong_text}</strong>#{after}"
-    end
-    result
-  end
-  def to_listitem(textlines)
-    lines = textlines.split(/\n/)
-    result = ""
-    listitems = Hash.new
-    last_itemtext = nil
+  PATTERN_BULLET = '^\* '
+  NESTED_PATTERN_BULLET = '^\*\* '
+  PATTERN_NUMBERSIGN = '^# '
+  NESTED_PATTERN_NUMBERSIGN = '^## '
+
+  class MyMarkdown
+    # adding extra space afterwards so that format is different from *text* for <strong> tag
+    # added extra space after # also, just for consistency
   
-    # default is to look for bullet points
-    pattern = PATTERN_BULLET
-    nested_pattern = NESTED_PATTERN_BULLET
-    list_type_tag_begin = "<ul>"
-    list_type_tag_end = "</ul>"
-
-    if textlines =~ /#{PATTERN_NUMBERSIGN}/
-      pattern = PATTERN_NUMBERSIGN
-      nested_pattern = NESTED_PATTERN_NUMBERSIGN
-      list_type_tag_begin = "<ol>"
-      list_type_tag_end = "</ol>"
+    def initialize(line, is_list_item)
+      @line = line 
+      @is_list_item = is_list_item     
+    end
+    def to_html
+      if @line == ''
+        return "<br/>"
+      end
+      result = to_href(@line)
+      result = to_bold_or_italics(result)
+      result = to_strong(result)
+      if @is_list_item
+        result = to_listitem(result)
+      elsif is_heading?(result)
+        result = to_heading(result)
+      else
+        result = to_p(result)
+      end
+      result
+    end
+    def to_href(text)
+      result = text
+      if text =~ /(?<before>.*)"(?<linkname>.*)":(?<linkurl>\S+)(?<after>.*)/
+        before = $~[:before]
+        linkname = $~[:linkname]
+        linkurl = $~[:linkurl]
+        after = $~[:after]
+        result = "#{before}<a href=\"#{linkurl}\">#{linkname}</a>#{after}"
+      end
+      result
+    end
+    def to_bold_or_italics(text)
+      result = text
+      if text =~ /^b\./
+        result = "<b>#{$~.post_match}</b>"
+      elsif text =~ /^i\./
+        result = "<i>#{$~.post_match}</i>"
+      end
+      result
+    end
+    def to_p(text)
+      "<p>#{text}</p>"
+    end
+    def to_listitem(text)
+      puts "text: #{text}"
+      if text =~ /#{NESTED_PATTERN_BULLET}/
+        text = $~.post_match
+      elsif text =~ /#{PATTERN_BULLET}/
+        text = $~.post_match
+      elsif text =~ /#{NESTED_PATTERN_NUMBERSIGN}/
+        text = $~.post_match
+      elsif text =~ /#{PATTERN_NUMBERSIGN}/
+        text = $~.post_match
+      end
+      return "<li>#{text}</li>"
+    end
+    def is_heading?(text)
+      return true if text =~ /h1\./
+      return true if text =~ /h2\./
+      return true if text =~ /h3\./
+      return true if text =~ /h4\./
+      return false
     end
   
-    lines.each do |line|
-      if line =~ /#{nested_pattern}/
-        # here we only handle 1 level nesting of bullets
-        nested_items = listitems[last_itemtext]
-        nested_items << $~.post_match
-      elsif line =~ /#{pattern}/
-        last_itemtext = $~.post_match 
-        # if same bullet point text is repeated, this will clobber into only one
-        listitems[last_itemtext] = []
+    def to_heading(text)
+      result = text
+      if text =~ /h1\./
+        result = "<h1>#{$~.post_match}</h1>"
+      elsif text =~ /h2\./
+        result = "<h2>#{$~.post_match}</h2>"
+      elsif text =~ /h3\./
+        result = "<h3>#{$~.post_match}</h3>"
+      elsif text =~ /h4\./
+        result = "<h4>#{$~.post_match}</h4>"
+      end
+      result
+    end
+    def to_strong(text)
+      result = text
+      if text =~ /(?<before>.*)\*(?<strong_text>.+)\*(?<after>.*)/
+        before = $~[:before]
+        strong_text = $~[:strong_text]
+        puts "strong_text:(#{strong_text})"
+        after = $~[:after]
+        result = "#{before}<strong>#{strong_text}</strong>#{after}"
+      end
+      result
+    end
+  end
+
+  class HTMLList
+    attr_accessor :list_type,:list_level,:tag_begin,:tag_end
+  
+    def initialize(text)
+      if text =~ /#{NESTED_PATTERN_BULLET}/
+        @list_type = 'BULLET'
+        @list_level = 2
+        @tag_begin = "<ul>"
+        @tag_end = "</ul>"
+      elsif text =~ /#{PATTERN_BULLET}/
+        @list_type = 'BULLET'
+        @list_level = 1
+        @tag_begin = "<ul>"
+        @tag_end = "</ul>"
+      elsif text =~ /#{NESTED_PATTERN_NUMBERSIGN}/
+        @list_type = 'NUMBER'
+        @list_level = 2
+        @tag_begin = "<ol>"
+        @tag_end = "</ol>"
+      elsif text =~ /#{PATTERN_NUMBERSIGN}/
+        @list_type = 'NUMBER'
+        @list_level = 1
+        @tag_begin = "<ol>"
+        @tag_end = "</ol>"
+      else
+        @list_type = 'NONE'
       end
     end
-  
-    if !listitems.empty?
-      result = "#{list_type_tag_begin}\n"
-      listitems.each do |item,nested_items|
-        result = result + "  <li>#{to_href(item)}</li>\n"
-        if nested_items and !nested_items.empty?
-          result = result + "  #{list_type_tag_begin}\n"
-          nested_items.each do |nested_item|
-            result = result + "    <li>#{to_href(nested_item)}</li>\n"
-          end
-          result = result + "  #{list_type_tag_end}\n"
-        end
-      end
-      result = result + "#{list_type_tag_end}\n"
+    def to_s
+      "#{@list_type} L#{@list_level}"
     end
-    result
   end
+
 end

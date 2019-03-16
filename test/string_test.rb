@@ -1,4 +1,4 @@
-require 'wikipage'
+require 'redclothadapter'
 require 'test/unit'
 
 class StringTest < Test::Unit::TestCase
@@ -6,11 +6,11 @@ class StringTest < Test::Unit::TestCase
     s = "a page name with spaces"
     assert_equal("a_page_name_with_spaces", s.underscore_for_space)
   end
-  def test_start_with_redcloth_section
-    assert "* item".start_with_redcloth_section?
-    assert "# ordered".start_with_redcloth_section?
-    assert !"h1. title".start_with_redcloth_section?
-    assert !"some text".start_with_redcloth_section?
+  def test_start_with_bullet_or_number
+    assert "* item".start_with_bullet_or_number?
+    assert "# ordered".start_with_bullet_or_number?
+    assert !"h1. title".start_with_bullet_or_number?
+    assert !"some text".start_with_bullet_or_number?
   end
 end
 

@@ -32,7 +32,22 @@ class WikiPageTest < Test::Unit::TestCase
       result << '    puts "hello world"'
       result << '  end'
       result << '</pre>'
+      result << ''
+      result << 'b. TODO List'
+      result << '* write code'
+      result << '* write docs'
+      result << '** biz req doc'
+      result << '** functional spec'
+      result << '* review code'
+      result << '** review release scripts'
+      result << '** review feature foo'
+      result << 'some *bolded value* text'
+      result << '# first item'
+      result << '# second item'
+      result << '## nested item A'
+      result << '* "github simplewiki":http://github.com/skanade/simplewiki/'
       result << 'footer'
+
     end
     puts @w.to_html_array
   end

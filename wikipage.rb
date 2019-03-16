@@ -1,9 +1,12 @@
-require 'redcloth' if ENV['REDCLOTH']
 require 'mymarkdownsubset'
+require 'redclothadapter'
 
 class WikiPage
   attr_accessor :content
   attr_reader :page_name,:mtime 
+
+  include MyMarkdownSubset
+  include RedClothAdapter
 
   def initialize(page_name, *args)
     @page_name = page_name
@@ -18,60 +21,66 @@ class WikiPage
   def readlines(text_file_path)
     File.readlines(text_file_path)
   end
-  def to_html_line(line)
-    if ENV['REDCLOTH']
-      return RedCloth.new(line).to_html
-    else
-      return MyMarkdownSubset.new(line).to_html
-    end
+  def to_html_line(line, is_list_item)
+    return MyMarkdown.new(line, is_list_item).to_html
   end
   def to_html_array
-    text_file_path = get_text_file_path
-    file_content = readlines(text_file_path)
-    sections = to_redcloth_sections(file_content)
-    result = []
-    in_pre_section = false    
-    sections.each do |section|
-      if section.start_with?('<pre>')
-        html_line = section
-        in_pre_section = true
-      elsif section.start_with?('</pre>')
-        html_line = section
-        in_pre_section = false
-      elsif in_pre_section
-        html_line = section
-      else
-        html_line = to_html_line(section)
-      end
-      result << html_line
+    if ENV['REDCLOTH']
+      to_html_array_redcloth
+    else
+      to_html_array_my_markdown
     end
-    result 
   end
-  def to_redcloth_sections(lines)
+  def to_html_array_my_markdown
+    text_file_path = get_text_file_path
+    file_lines = readlines(text_file_path)
+
     result = []
-    section = ""
-    in_section = false
-    
-    lines.each do |line|
+    list_level = 0
+    in_pre_section = false
+    last_html_list = nil
+    last_line = nil
+    file_lines.each do |line|
       line.chomp!
-      if line.start_with_redcloth_section?
-        section += "#{line}\n"
-        #puts "section: #{section}"
-        in_section = true
-      else
-        if in_section
-          result << section.dup
-          in_section = false
-          section = ""
-        end
+      if line == ''
+        result << to_html_line(line, false)
+      elsif line.start_with?('</pre>')
+        in_pre_section = false
         result << line
+      elsif in_pre_section
+        result << line
+      elsif line.start_with?('<pre>')
+        in_pre_section = true
+        result << line
+      else
+        html_list = HTMLList.new(line)
+        #puts "html_list #{html_list}"
+        if html_list.list_type == 'NONE'
+          if list_level > 0
+            list_level.downto(1) do
+              result << "#{last_html_list.tag_end}\n"
+            end
+            list_level = 0
+          end
+          result << to_html_line(line, false)
+        elsif html_list.list_type == 'BULLET' or html_list.list_type == 'NUMBER'
+          if html_list.list_level != list_level
+            if html_list.list_level > list_level
+              result << "#{html_list.tag_begin}\n"
+            else
+              result << "#{html_list.tag_end}\n"
+            end
+            list_level = html_list.list_level
+          end
+          result << "#{to_html_line(line, true)}\n"
+        end
+        last_html_list = html_list
       end
-    end
-    if in_section
-      result << section
+      last_line = line
     end
     result
   end
+
   def as_string
     text_file_path = get_text_file_path
     if File.exist?(text_file_path) 
@@ -113,17 +122,3 @@ class WikiPage
   end
 end
 
-class String
-  def underscore_for_space
-    result = gsub(' ','_')
-  end
-  def start_with_any?(list)
-    list.each do |key|
-      return true if start_with?(key)
-    end
-    return false
-  end
-  def start_with_redcloth_section?
-    start_with_any? ['*','#']
-  end
-end

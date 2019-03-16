@@ -1,0 +1,11 @@
+h2. Overview 
+Simple Wiki is a simple note taking web application that you can use as your own personal wiki.
+h2. Source Code
+* "github simplewiki":http://github.com/skanade/simplewiki
+h2. Features
+* Create/Edit "wiki" pages
+* Latest and All Pages Links in Left Nav
+* Search for text in all pages
+* Search dynamically in current page and for page names
+* Upload Image
+* Print View
