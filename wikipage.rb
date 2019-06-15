@@ -1,5 +1,5 @@
-require 'mymarkdownsubset'
-require 'redclothadapter'
+require_relative 'mymarkdownsubset'
+require_relative 'redclothadapter'
 
 class WikiPage
   attr_accessor :content
@@ -49,7 +49,7 @@ class WikiPage
         result << line
       elsif in_pre_section
         result << line
-      elsif line.start_with?('<pre>')
+      elsif line.start_with?('<pre>') or line.start_with?('<pre class')
         in_pre_section = true
         result << line
       else

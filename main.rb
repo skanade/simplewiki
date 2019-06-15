@@ -3,8 +3,8 @@ $LOAD_PATH.unshift File.dirname(File.expand_path($PROGRAM_NAME))
 require 'sinatra'
 require 'redcloth' if ENV['REDCLOTH']
 
-require 'wikipage'
-require 'simplewiki'
+require_relative 'wikipage'
+require_relative 'simplewiki'
 
 # initialize wiki
 

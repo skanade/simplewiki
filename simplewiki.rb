@@ -1,5 +1,5 @@
-require 'wikipage'
-require 'wikiconfig'
+require_relative 'wikipage'
+require_relative 'wikiconfig'
 
 class SimpleWiki
   def initialize
