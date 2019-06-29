@@ -13,7 +13,7 @@ class SimpleWikiTest < Test::Unit::TestCase
     end
   end
   def test_search_for_text
-    result = @wiki.search_for_text('h2') 
+    label_result,result = @wiki.search_for_text('h2') 
     result.each_key do |page_name|
       assert !page_name.end_with?('.txt')    
     end
