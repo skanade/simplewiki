@@ -17,3 +17,4 @@ puts inc(4)  #=> 4
 puts counter  #=> 4
 </pre>
 
+LABELS:ruby

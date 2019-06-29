@@ -1,5 +1,6 @@
 require_relative 'mymarkdownsubset'
 require_relative 'redclothadapter'
+require_relative 'labelindex'
 
 class WikiPage
   attr_accessor :content
@@ -95,6 +96,18 @@ class WikiPage
     else
       ""
     end
+  end
+  def content=(content)
+    @content = content
+  end
+  def get_labels
+    @content.each_line do |line|
+      line.chomp!
+      if line.start_with?('LABELS:')
+        return line
+      end
+    end
+    return nil
   end
   def save
     text_file_path = get_text_file_path

@@ -1,0 +1,8 @@
+---
+ruby:
+  ruby_index: true
+  ruby_shared_scope: true
+rake:
+  ruby_index: true
+markdown:
+  markdown_examples: true

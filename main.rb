@@ -20,6 +20,8 @@ post '/save' do
   page.content = content
   page.save
 
+  @wiki.page_saved(page)
+
   redirect "/view?page_name=#{page_name}"
 end
 
@@ -31,7 +33,7 @@ end
 
 post '/search' do
   @search_value = params[:search_value]
-  @search_result = @wiki.search_for_text(@search_value)  
+  @label_result,@search_result = @wiki.search_for_text(@search_value)  
   #puts "@search_result: #{@search_result.size}"
   erb :search
 end

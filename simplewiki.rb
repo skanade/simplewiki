@@ -1,9 +1,12 @@
 require_relative 'wikipage'
 require_relative 'wikiconfig'
+require_relative 'labelindex'
 
 class SimpleWiki
   def initialize
     @config = WikiConfig.new
+    @label_index = LabelIndex.new
+    @label_index.load
   end
   def get_text_file_paths
     text_file_paths = Dir.glob('text/*.txt')
@@ -18,6 +21,13 @@ class SimpleWiki
     end
     saved_pages
   end
+  def page_saved(wikipage)
+    labels_text = wikipage.get_labels
+    if labels_text
+      @label_index.add_labels(labels_text, wikipage.page_name)
+      @label_index.save
+    end
+  end
   def search_for_text(text)
     #puts "--- search_for_text (#{text})"
     text_file_paths = get_text_file_paths    
@@ -29,8 +39,9 @@ class SimpleWiki
       next if matching_lines.empty?
       result[page_name] = matching_lines
     end
+    label_result = @label_index.get_pages(text)
     #puts "+++++ search_for_text (#{text}) result has #{result.size} pages with matches +++++"
-    result
+    return label_result,result
   end
   def page_name(text_file_path)
     File.basename(text_file_path, '.txt')     
