@@ -7,13 +7,18 @@ https://github.com/skanade/simplewiki/wiki (see screenshot)
 
 Here are steps to get this running on your machine:
 
-1. First, download & install Ruby 2.x (developed with Ruby 1.9.3 originally and runs successfully with Ruby 2.3.3)
+1. First, download & install Ruby 2.x (developed with Ruby 1.9.3 originally and runs successfully with Ruby 2.3.3, 2.6.5)
 
-2. Then install the 2 gems: sinatra & redcloth
-  * gem install sinatra 
+2. Then install the bundler gem
+  * gem install bundler
+
+3. Run bundle install to install gems in Gemfile
+  * bundle install
+
+3b. Install RedCloth gem (optional)
   * gem install RedCloth (optional - you can also run without RedCloth, with a limited subset of markdown)
 
-3. Startup the sinatra instance with:
+4. Startup the sinatra instance with:
 
 <pre>
   ruby main.rb
@@ -22,7 +27,8 @@ Here are steps to get this running on your machine:
 <pre>
   REDCLOTH=true ruby main.rb
 </pre>
-4. Open a browser to: 
+
+5. Open a browser to: 
 
   http://localhost:4567
 
@@ -46,5 +52,4 @@ If you want to use RedCloth on Windows though, you will have to first do the fol
 If you're behind a firewall and you can't install remote gems, you'll have to download sinatra and its dependencies such as: rack, rack-protection, tilt, and RedCloth as .gem files to your PC.
 Then make sure you have LOAD_PATH=. and install each gem:
   * gem install *Gemname* (ex: gem install tilt)
-
 
