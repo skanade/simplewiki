@@ -15,7 +15,8 @@ use Rack::Deflater
 #set :static_cache_control, [:public, :max_age => 300]
 
 before do
-  cache_control :public, :max_age => 600
+  # set max_age to 10 seconds
+  cache_control :public, :max_age => 10
   @wiki = SimpleWiki.new
 end
 
