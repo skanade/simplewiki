@@ -15,7 +15,7 @@ Here are steps to get this running on your machine:
 3. Run bundle install to install gems in Gemfile
   * bundle install
 
-Install RedCloth gem (optional)
+3. Install RedCloth gem (optional)
   * gem install RedCloth (optional - you can also run without RedCloth, with a limited subset of markdown)
 
 4. Startup the sinatra instance with:
