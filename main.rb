@@ -6,9 +6,16 @@ require 'redcloth' if ENV['REDCLOTH']
 require_relative 'wikipage'
 require_relative 'simplewiki'
 
+# gzip responses
+use Rack::Deflater
+
 # initialize wiki
 
+# below static_cache_control did NOT work
+#set :static_cache_control, [:public, :max_age => 300]
+
 before do
+  cache_control :public, :max_age => 600
   @wiki = SimpleWiki.new
 end
 

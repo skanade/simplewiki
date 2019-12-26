@@ -53,7 +53,7 @@ module MyMarkdownSubset
       "<p>#{text}</p>"
     end
     def to_listitem(text)
-      puts "text: #{text}"
+      #puts "text: #{text}"
       if text =~ /#{NESTED_PATTERN_BULLET}/
         text = $~.post_match
       elsif text =~ /#{PATTERN_BULLET}/
@@ -91,7 +91,7 @@ module MyMarkdownSubset
       if text =~ /(?<before>.*)\*(?<strong_text>.+)\*(?<after>.*)/
         before = $~[:before]
         strong_text = $~[:strong_text]
-        puts "strong_text:(#{strong_text})"
+        #puts "strong_text:(#{strong_text})"
         after = $~[:after]
         result = "#{before}<strong>#{strong_text}</strong>#{after}"
       end
