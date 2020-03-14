@@ -13,6 +13,7 @@ class SimpleWiki
   end
   def saved_page_names
     text_file_paths = get_text_file_paths
+    text_file_paths.sort!
     #puts text_file_paths
     saved_pages = []
     text_file_paths.each do |text_file_path|
