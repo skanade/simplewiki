@@ -2,6 +2,7 @@ $LOAD_PATH.unshift File.dirname(File.expand_path($PROGRAM_NAME))
 
 require 'sinatra'
 require 'redcloth' if ENV['REDCLOTH']
+require 'os'
 
 require_relative 'wikipage'
 require_relative 'simplewiki'
@@ -44,6 +45,14 @@ post '/search' do
   @label_result,@search_result = @wiki.search_for_text(@search_value)  
   #puts "@search_result: #{@search_result.size}"
   erb :search
+end
+
+get '/text' do
+  if OS.windows?
+    system("start ./text/")
+  elsif OS.mac?
+    system("open ./text/")
+  end
 end
 
 get '/view' do
