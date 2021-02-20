@@ -1,2 +1,6 @@
 ---
-:last_num_pages: 5
+:last_num_pages: 20
+:favorites:
+  - SimpleWiki
+  - markdown_examples
+  - lorem_ipsum

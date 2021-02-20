@@ -1,18 +1,18 @@
 h2. Header
-h3. Sub Header
+h3. Sub Header Long
 h4. Section
 List of *Fruits*
-* orange
+* orange 2
 * apple
 ** fuji
-** delicious
+** delicious fruit
 * banana - "search on google":https://www.google.com/search?q=banana
 b. bold<br/>
 i. italics
 
 Todo list:
-# laundry
+# laundry - today
 # wash dishes
-# iron shirts
+# iron shirts : tomorrow
 
 LABELS:markdown

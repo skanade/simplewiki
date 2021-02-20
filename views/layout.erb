@@ -67,6 +67,15 @@ $(document).ready(function(){
     <div id='main'>
       <header>
         <input id="search_page_name_input" placeholder='search page names..' size="20"/>
+        <p class='page-list'>Favorites</p>
+        <nav>
+          <ul>
+            <% @wiki.favorites.each do |page_name| %>
+              <li><a href='/view?page_name=<%=page_name%>'><%=page_name%></a></li>
+            <% end %>
+          </ul>
+        </nav>
+        <br/>
         <p class='page-list'>Latest Pages</p>
         <nav>
           <ul>

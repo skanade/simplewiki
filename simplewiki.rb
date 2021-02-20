@@ -87,4 +87,7 @@ class SimpleWiki
     end
     page_names
   end
+  def favorites
+    favorites = @config.favorites
+  end
 end

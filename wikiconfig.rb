@@ -7,4 +7,7 @@ class WikiConfig
   def last_num_pages
     @config[:last_num_pages]
   end
+  def favorites
+    @config[:favorites]
+  end
 end
