@@ -8,7 +8,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 td, th, caption { font-weight: normal; text-align: left; }
 img, fieldset { border: 0; }
 ol { padding-left: 1.4em; list-style: decimal; }
-ul { padding-left: 1.4em; list-style:square; }
+ul { padding-left: 1.0em; list-style:square; }
 q:before, q:after { content:''; }
 
 header, footer, aside, nav, section, article {
@@ -29,13 +29,15 @@ body {
 #top-header {
   width: 1000px;
   border: 1px solid #DDDDDD;  
-  padding: 10px 40px 40px 40px;
-  margin-bottom: 10px;
+  padding: 10px 40px 35px 40px;
+  margin-bottom: 0px;
   background-color: #F1F1F1;
   #background: hsl(90, 50%, 50%);
 }
 
   #top-header h1 {
+    padding-top: 2px;
+    padding-bottom: 2px;
     padding-right: 80px;
     margin-left: -40px;
     width: 1000px;
@@ -64,14 +66,19 @@ body {
     float: left;
   }
 
+  #top-header .open {
+    margin-right: -10px;
+    padding: 2px 2px 2px 2px;
+    float: right;
+  }
   #top-header .upload-image {
     margin-right: 10px;
     padding: 2px 2px 2px 2px;
-    #border: 1px solid #DDDDDD;
     float: right;
   }
   
   #top-header .main-button {
+    margin-left: 4px;
     font-size: 0.9em;
     color: #fef4e9;
     /* Gradient */
@@ -170,7 +177,7 @@ header {
     padding-bottom: 2px;
     width: 250px;
     margin-top: 5px;
-    margin-left: 10px;
+    margin-left: 0px;
     margin-bottom: 5px;
   }
 
@@ -179,16 +186,21 @@ header {
   }
 
 #main {
-  margin-top: -10px;
-  padding: 4px 0px 0px 4px;
+  margin-top: 0px;
+  padding: 0px 0px 0px 0px;
   height: 1000px;
+}
+
+#search_page_name_input {
+  margin-left: 15px;
+  margin-top: 5px;
 }
 
 #page-main {
   margin-left: 10px;
-  margin-top: -5px;
+  margin-top: 0px;
   height: 600px;
-  width: 700px;
+  width: 738px;
   float: left;
 }
 
@@ -297,16 +309,16 @@ header {
   filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF700', endColorstr='#FCDC00fff');
   }
 
-
   #page-main .form-buttons-inline {
-    width: 150px;
+    width: 254px;
   }
   #page-main .form-buttons-inline .form-buttons-left {
     float: left;
     width: 50px;
+    margin-left: 4px;
   }
   #page-main .form-buttons-inline .form-buttons-right {
     float: right;
-    width: 100px;
+    width: 200px;
   }
 
