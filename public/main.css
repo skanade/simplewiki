@@ -45,7 +45,7 @@ body {
     margin-top: -11px;
     margin-bottom: 11px;
     #background-color: #78BBEE;
-    background-color: #333333;
+    background-color: #444444;
     color: #FFFFFF;
   }
   
@@ -227,7 +227,7 @@ header {
   }
 
   #page-main article {
-    margin-top: 5px;
+    margin-top: 10px;
     margin-left: 5px;
     margin-right: 5px;
     width: 690px;
