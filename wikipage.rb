@@ -1,3 +1,5 @@
+require 'cgi'
+
 require_relative 'mymarkdownsubset'
 require_relative 'redclothadapter'
 require_relative 'labelindex'
@@ -89,8 +91,19 @@ class WikiPage
       #puts "*** read from #{text_file_path}"
       #puts file_content
       result = ""
+      in_pre_section = false
       file_content.each do |line|
-        result << line
+        if line.start_with?('</pre>')
+          in_pre_section = false
+          result << line
+        elsif in_pre_section
+          result << CGI.escapeHTML(line)
+        elsif line.start_with?('<pre>') or line.start_with?('<pre class')
+          in_pre_section = true
+          result << line
+        else
+          result << line
+        end
       end
       result
     else
