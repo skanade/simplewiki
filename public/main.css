@@ -17,7 +17,7 @@ header, footer, aside, nav, section, article {
 
 body {
   margin: 0 auto;
-  width: 1000px;
+  width: 100%;
   padding: 0 20px;
   font-family: "Helvetica", "Arial", serif;
   font-size: 0.9em;
@@ -27,20 +27,18 @@ body {
 }
 
 #top-header {
-  width: 1000px;
+  width: 100%;
   border: 1px solid #DDDDDD;  
   padding: 10px 40px 35px 40px;
   margin-bottom: 0px;
   background-color: #F1F1F1;
   #background: hsl(90, 50%, 50%);
 }
-
   #top-header h1 {
     padding-top: 2px;
     padding-bottom: 2px;
     padding-right: 80px;
     margin-left: -40px;
-    width: 1000px;
     font-size: 1.3em;
     margin-top: -11px;
     margin-bottom: 11px;
@@ -48,7 +46,6 @@ body {
     background-color: #444444;
     color: #FFFFFF;
   }
-  
   #top-header nav li {
     display: inline;
   }
@@ -58,7 +55,6 @@ body {
     padding: 2px 2px 2px 2px;
     float: left;
   }
-
   #top-header .search {
     margin-left: 30px;
     padding: 2px 2px 2px 2px;
@@ -67,7 +63,7 @@ body {
   }
 
   #top-header .open {
-    margin-right: -10px;
+    margin-right: 80px;
     padding: 2px 2px 2px 2px;
     float: right;
   }
@@ -76,7 +72,6 @@ body {
     padding: 2px 2px 2px 2px;
     float: right;
   }
-  
   #top-header .main-button {
     margin-left: 4px;
     font-size: 0.9em;
@@ -152,7 +147,6 @@ body {
     filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#EDEDED', endColorstr='#FFFFFFfff');
   }
 
-
 h1 {
   text-align: center;
   font-size: 1.7em;
@@ -186,27 +180,26 @@ header {
   }
 
 #main {
-  margin-top: 0px;
+  margin-top: 10px;
   padding: 0px 0px 0px 0px;
-  height: 1000px;
+  float: left;
+  width: 280px;
+  height: 100%;
 }
-
-#search_page_name_input {
-  margin-left: 15px;
-  margin-top: 5px;
-}
+  #main #search_page_name_input {
+    margin-left: 10px;
+  }
+  
 
 #page-main {
   margin-left: 10px;
   margin-top: 0px;
-  height: 600px;
-  width: 738px;
-  float: left;
+  width: 75%;
+  height: 100%;
 }
 
   #page-main h1 {
-    margin-left: 5px;
-    width: 690px;
+    margin-left: 270px;
     padding-left: 5px;
     text-align: left;
     border-bottom: 1px solid #333333;
@@ -214,6 +207,7 @@ header {
     padding-bottom: 0px;
     margin-bottom: 6px;
     font-size: 1.7em;
+
   }
   #page-main h2 {
     padding-top: 5px;
@@ -230,7 +224,6 @@ header {
     margin-top: 20px;
     margin-left: 5px;
     margin-right: 5px;
-    width: 690px;
     line-height: 1.5em;
   }
 
@@ -308,17 +301,16 @@ header {
     background: -moz-linear-gradient(top,  #FFF700,  #FCDC00);
   filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF700', endColorstr='#FCDC00fff');
   }
-
   #page-main .form-buttons-inline {
-    width: 254px;
   }
   #page-main .form-buttons-inline .form-buttons-left {
-    float: left;
-    width: 50px;
-    margin-left: 4px;
+    position: relative;
+    left: 5px;
   }
   #page-main .form-buttons-inline .form-buttons-right {
-    float: right;
-    width: 200px;
+    position: relative;
+    top: -17px;
+    left: 60px;
   }
+
 
